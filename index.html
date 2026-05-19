@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3rd Space Consulting — Bringing People Back Together</title>
+  <meta name="description" content="You are not meant to be alone. 3rd Space Consulting helps adults overcome loneliness and build a social life that actually fits them." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050505;
+      --hazel: #C8922A;
+      --dark-red: #8B1A1A;
+      --off-white: #F5F0EA;
+      --gray: #8A8A8A;
+      --font: 'Poppins', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--off-white);
+      font-family: var(--font);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.95) 0%, transparent 100%);
+    }
+
+    .nav-brand {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--off-white); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      overflow: hidden;
+    }
+
+    /* Radial glow behind hero text */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(139,26,26,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--hazel);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--off-white);
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--hazel);
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 560px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--dark-red);
+      color: var(--off-white);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.1rem 2.8rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-red);
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .btn-secondary:hover { color: var(--off-white); }
+
+    .btn-secondary svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--dark-red);
+      margin: 0 auto;
+    }
+
+    /* ── SECTION: WHY ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--off-white);
+      max-width: 640px;
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: var(--hazel);
+    }
+
+    /* ── THREE PILLARS ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      margin-top: 4rem;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .pillar {
+      background: var(--bg);
+      padding: 2.5rem 2rem;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .pillar:hover { border-color: var(--hazel); }
+
+    .pillar-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: rgba(139,26,26,0.25);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .pillar-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar-text {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── QUIZ CTA SECTION ── */
+    .quiz-section {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(139,26,26,0.08) 0%, rgba(200,146,42,0.06) 100%);
+      border-top: 1px solid rgba(200,146,42,0.15);
+      border-bottom: 1px solid rgba(200,146,42,0.15);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .quiz-section .section-label { text-align: center; }
+
+    .quiz-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--off-white);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .quiz-title em {
+      font-style: normal;
+      color: var(--hazel);
+    }
+
+    .quiz-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── YOUTUBE SECTION ── */
+    .yt-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .yt-text .section-title { max-width: 100%; }
+
+    .yt-text p {
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .yt-text .btn-primary { margin-top: 2rem; }
+
+    .yt-videos {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .yt-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .yt-card:hover {
+      border-color: rgba(200,146,42,0.3);
+      background: rgba(200,146,42,0.04);
+    }
+
+    .yt-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--dark-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .yt-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--off-white);
+    }
+
+    .yt-card-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--off-white);
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 3rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--gray);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--off-white); }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(138,138,138,0.5);
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .yt-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#why">About</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#youtube">YouTube</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">3rd Space Consulting</p>
+    <h1 class="hero-headline">You are not meant<br>to be <em>alone.</em></h1>
+    <p class="hero-sub">Adult loneliness is an epidemic — but it's solvable. Discover the social life that actually fits you.</p>
+    <div class="hero-cta">
+      <a href="https://quiz.3rdspaceconsulting.co" class="btn-primary">Find Your Third Space →</a>
+      <a href="https://www.youtube.com/@3rdSpaceConsulting" class="btn-secondary">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.74 12.14 12.14 0 0 0-8.45 3.77 12.06 12.06 0 0 0-2.74 8.45 4.83 4.83 0 0 1 2.74 3.77 12.14 12.14 0 0 0 8.45-3.77 12.06 12.06 0 0 0 2.74-8.45z"/></svg>
+        Watch on YouTube
+      </a>
+    </div>
+  </section>
+
+  <!-- WHY SECTION -->
+  <div class="section" id="why">
+    <p class="section-label reveal">The Problem</p>
+    <h2 class="section-title reveal">Most people leave their social life <em>to chance.</em></h2>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Loneliness is at epidemic levels</div>
+        <p class="pillar-text">Adults are more isolated than at any point in modern history — and most don't have a plan to fix it.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Generic advice doesn't work</div>
+        <p class="pillar-text">"Just join a club" ignores the fact that different people have different social needs. One size fits none.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">The right environment changes everything</div>
+        <p class="pillar-text">When you find spaces that match how you're wired, connection stops feeling forced — and starts feeling natural.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ SECTION -->
+  <section class="quiz-section" id="quiz">
+    <p class="section-label reveal">Free Quiz</p>
+    <div class="divider" style="margin-bottom:2rem;"></div>
+    <h2 class="quiz-title reveal">Find your <em>Third Space</em><br>in 2 minutes.</h2>
+    <p class="quiz-sub reveal">Answer a few questions about how you're wired socially — we'll match you to the environments where you're most likely to thrive.</p>
+    <a href="https://quiz.3rdspaceconsulting.co" class="btn-primary reveal">Take the Free Quiz →</a>
+  </section>
+
+  <!-- YOUTUBE SECTION -->
+  <section id="youtube">
+    <div class="yt-section">
+      <div class="yt-text reveal">
+        <p class="section-label">On YouTube</p>
+        <h2 class="section-title">Real strategies.<br><em>Real results.</em></h2>
+        <p>Weekly videos on friendship, belonging, and building a social life that actually fits you — from someone who went from 24 years of isolation to an active, thriving community.</p>
+        <a href="https://www.youtube.com/@3rdspaceconsulting" target="_blank" rel="noopener" class="btn-primary">Subscribe on YouTube →</a>
+      </div>
+      <div class="yt-videos">
+        <a href="https://youtu.be/KdoHBQ-sDBE" target="_blank" rel="noopener" class="yt-card reveal">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span class="yt-card-title">I Was Isolated for 24 Years. Now I Have an Active Social Life.</span>
+        </a>
+        <a href="https://youtu.be/jMbomcqY7vQ" target="_blank" rel="noopener" class="yt-card reveal">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span class="yt-card-title">The Hidden Reason Your Friendships Are Fading</span>
+        </a>
+        <a href="https://youtu.be/im9_25DF7pc" target="_blank" rel="noopener" class="yt-card reveal">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span class="yt-card-title">Why Hobbies Are The Cheat Code For Making Friends As An Adult</span>
+        </a>
+        <a href="https://youtu.be/vJFtyUH6kis" target="_blank" rel="noopener" class="yt-card reveal">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span class="yt-card-title">I Tried Bowling for 46 Weeks. Here's What I Learned.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">3rd Space Consulting</span>
+    <ul class="footer-links">
+      <li><a href="https://www.youtube.com/@3rdspaceconsulting" target="_blank">YouTube</a></li>
+      <li><a href="https://www.instagram.com/3rdspaceconsulting" target="_blank">Instagram</a></li>
+      <li><a href="https://twitter.com/3rdSpaceConsult" target="_blank">Twitter/X</a></li>
+      <li><a href="https://www.reddit.com/u/3rdSpaceConsulting" target="_blank">Reddit</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 3rd Space Consulting LLC · Bringing People Back Together</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
