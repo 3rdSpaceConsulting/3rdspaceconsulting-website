@@ -187,6 +187,28 @@
       transform: translateY(-2px);
     }
 
+    .btn-hazel {
+      display: inline-block;
+      background: var(--hazel);
+      color: var(--bg);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.1rem 2.8rem;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.2s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .btn-hazel:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
     .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -319,64 +341,6 @@
       max-width: 500px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
-    }
-
-    .email-capture {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-
-    .email-capture input[type="email"] {
-      font-family: var(--font);
-      font-size: 0.9rem;
-      padding: 1.1rem 1.5rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--off-white);
-      outline: none;
-      width: 300px;
-      transition: border-color 0.3s;
-    }
-
-    .email-capture input[type="email"]::placeholder {
-      color: var(--gray);
-    }
-
-    .email-capture input[type="email"]:focus {
-      border-color: var(--hazel);
-    }
-
-    /* ── CONVERTKIT FORM OVERRIDES ── */
-    .formkit-form {
-      background: transparent !important;
-      padding: 0 !important;
-      margin: 0 auto !important;
-      max-width: 500px !important;
-      width: 100% !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
-
-    .formkit-background {
-      background: transparent !important;
-      display: none !important;
-    }
-
-    [data-uid="164c02935b"] {
-      display: flex !important;
-      justify-content: center !important;
-      width: 100% !important;
-    }
-
-    [data-uid="164c02935b"] .formkit-header {
-      display: none !important;
-    }
-
-    [data-uid="164c02935b"] .formkit-subheader {
-      display: none !important;
     }
 
     /* ── YOUTUBE SECTION ── */
@@ -547,7 +511,7 @@
     <h1 class="hero-headline">You are not meant<br>to be <em>alone.</em></h1>
     <p class="hero-sub">Adult loneliness is an epidemic — but it's solvable. Discover the social life that actually fits you.</p>
     <div class="hero-cta">
-      <a href="#quiz" class="btn-primary">Get Notified When Quiz Launches →</a>
+      <a href="https://quiz.3rdspaceconsulting.co" target="_blank" rel="noopener" class="btn-primary">Take the Free Quiz →</a>
       <a href="https://www.youtube.com/@3rdSpaceConsulting" class="btn-secondary">
         <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.74 12.14 12.14 0 0 0-8.45 3.77 12.06 12.06 0 0 0-2.74 8.45 4.83 4.83 0 0 1 2.74 3.77 12.14 12.14 0 0 0 8.45-3.77 12.06 12.06 0 0 0 2.74-8.45z"/></svg>
         Watch on YouTube
@@ -583,10 +547,10 @@
   <section class="quiz-section" id="quiz">
     <p class="section-label reveal">Free Quiz</p>
     <div class="divider" style="margin-bottom:2rem;"></div>
-    <h2 class="quiz-title reveal">Find Your Third Space —<br><em>Quiz Coming Soon.</em></h2>
-    <p class="quiz-sub reveal">Enter your email to be the first to know when it launches.</p>
+    <h2 class="quiz-title reveal">Find Your <em>Third Space.</em></h2>
+    <p class="quiz-sub reveal">Answer a few questions and get matched to the social environments that actually fit how you're wired.</p>
     <div class="reveal">
-      <script async data-uid="164c02935b" src="https://3rd-space-consulting-2.kit.com/164c02935b/index.js"></script>
+      <a href="https://quiz.3rdspaceconsulting.co" target="_blank" rel="noopener" class="btn-primary">Take the 3rd Space Quiz →</a>
     </div>
   </section>
 
@@ -618,11 +582,23 @@
           </div>
           <span class="yt-card-title">Why Hobbies Are The Cheat Code For Making Friends As An Adult</span>
         </a>
+        <a href="https://youtu.be/ktUD9QqZQb0" target="_blank" rel="noopener" class="yt-card reveal">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span class="yt-card-title">Pick 3rd Spaces Based on Your Needs</span>
+        </a>
         <a href="https://youtu.be/vJFtyUH6kis" target="_blank" rel="noopener" class="yt-card reveal">
           <div class="yt-icon">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
           </div>
           <span class="yt-card-title">I Tried Bowling for 46 Weeks. Here's What I Learned.</span>
+        </a>
+        <a href="https://youtu.be/TT3fsCyl1WU" target="_blank" rel="noopener" class="yt-card reveal">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span class="yt-card-title">Most People Leave Their Social Life to Chance. Don't.</span>
         </a>
       </div>
     </div>
