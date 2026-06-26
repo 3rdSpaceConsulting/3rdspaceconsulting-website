@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3rd Space Consulting — Bringing People Back Together</title>
-  <meta name="description" content="You are not meant to be alone. 3rd Space Consulting helps adults overcome loneliness and build a social life that actually fits them." />
+  <title>3rd Space Budget Calculator — What Will Your Social Life Cost?</title>
+  <meta name="description" content="Find out what your 3rd Space will actually cost you each month. Built by 3rd Space Consulting." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
@@ -17,6 +17,8 @@
       --dark-red: #8B1A1A;
       --off-white: #F5F0EA;
       --gray: #8A8A8A;
+      --card-bg: #0f0f0f;
+      --border: rgba(255,255,255,0.06);
       --font: 'Poppins', sans-serif;
     }
 
@@ -27,9 +29,9 @@
       color: var(--off-white);
       font-family: var(--font);
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -40,12 +42,10 @@
       opacity: 0.4;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -81,29 +81,21 @@
 
     .nav-links a:hover { color: var(--off-white); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      z-index: 1;
+      padding: 10rem 2rem 5rem;
       text-align: center;
-      padding: 8rem 2rem 6rem;
-      overflow: hidden;
     }
 
-    /* Radial glow behind hero text */
     .hero::after {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(ellipse at center, rgba(139,26,26,0.12) 0%, transparent 70%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(139,26,26,0.1) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -113,25 +105,22 @@
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--hazel);
-      margin-bottom: 1.5rem;
+      color: var(--dark-red);
+      margin-bottom: 1.2rem;
       position: relative;
       z-index: 1;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.2s;
     }
 
     .hero-headline {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--off-white);
       position: relative;
       z-index: 1;
-      max-width: 900px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.4s;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero-headline em {
@@ -140,28 +129,291 @@
     }
 
     .hero-sub {
-      margin-top: 1.5rem;
-      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-top: 1.2rem;
+      font-size: 1rem;
       font-weight: 300;
       color: var(--gray);
-      max-width: 560px;
+      max-width: 540px;
+      margin: 1.2rem auto 0;
       line-height: 1.7;
       position: relative;
       z-index: 1;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.6s;
     }
 
-    .hero-cta {
-      margin-top: 3rem;
+    .divider {
+      width: 60px; height: 2px;
+      background: var(--dark-red);
+      margin: 2rem auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CALCULATOR WRAPPER */
+    .calculator-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    /* STEP 1 — SELECT YOUR SPACE */
+    .step-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .step-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--off-white);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .space-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .space-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--gray);
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1.1rem 1rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: center;
+    }
+
+    .space-btn:hover {
+      border-color: rgba(200,146,42,0.4);
+      color: var(--off-white);
+    }
+
+    .space-btn.active {
+      border-color: var(--hazel);
+      color: var(--hazel);
+      background: rgba(200,146,42,0.06);
+    }
+
+    /* STEP 2 — INPUTS */
+    .calc-section {
+      display: none;
+    }
+
+    .calc-section.visible {
+      display: block;
+    }
+
+    .space-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .space-name {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .space-need {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+    }
+
+    .cost-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .cost-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .cost-card-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hazel);
+    }
+
+    .cost-card-fixed {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      white-space: nowrap;
+    }
+
+    .cost-card p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .cost-card p:last-child { margin-bottom: 0; }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .input-group label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .input-group input,
+    .input-group select {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--off-white);
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.7rem 0.9rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.25s;
+      -moz-appearance: textfield;
+    }
+
+    .input-group input::-webkit-outer-spin-button,
+    .input-group input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: var(--dark-red);
+    }
+
+    .input-group select option {
+      background: #111;
+      color: var(--off-white);
+    }
+
+    .input-hint {
+      font-size: 0.72rem;
+      color: var(--gray);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    /* RESULT */
+    .result-box {
+      background: linear-gradient(135deg, rgba(139,26,26,0.12) 0%, rgba(200,146,42,0.08) 100%);
+      border: 1px solid rgba(200,146,42,0.25);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .result-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--hazel);
+      margin-bottom: 0.75rem;
+    }
+
+    .result-amount {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      color: var(--off-white);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-per {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .result-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      text-align: left;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--gray);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .breakdown-row span:last-child {
+      color: var(--off-white);
+      font-weight: 600;
+    }
+
+    .breakdown-row.total-row {
+      border-bottom: none;
+      border-top: 1px solid rgba(200,146,42,0.2);
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .breakdown-row.total-row span {
+      color: var(--hazel) !important;
+      font-weight: 700 !important;
+    }
+
+    .result-cta-group {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1rem;
-      position: relative;
-      z-index: 1;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.8s;
     }
 
     .btn-primary {
@@ -169,328 +421,55 @@
       background: var(--dark-red);
       color: var(--off-white);
       font-family: var(--font);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 1.1rem 2.8rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    }
-
-    .btn-primary:hover {
-      background: var(--dark-red);
-      opacity: 0.85;
-      transform: translateY(-2px);
-    }
-
-    .btn-hazel {
-      display: inline-block;
-      background: var(--hazel);
-      color: var(--bg);
-      font-family: var(--font);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 1.1rem 2.8rem;
+      padding: 1rem 2.4rem;
       border: none;
       cursor: pointer;
       transition: opacity 0.3s, transform 0.2s;
       clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     }
 
-    .btn-hazel:hover {
-      opacity: 0.88;
+    .btn-primary:hover {
+      opacity: 0.85;
       transform: translateY(-2px);
     }
 
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .btn-secondary-link {
+      font-size: 0.8rem;
       color: var(--gray);
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
       text-decoration: none;
+      letter-spacing: 0.08em;
       transition: color 0.3s;
     }
 
-    .btn-secondary:hover { color: var(--off-white); }
+    .btn-secondary-link:hover { color: var(--off-white); }
 
-    .btn-secondary svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: var(--dark-red);
-      margin: 0 auto;
-    }
-
-    /* ── SECTION: WHY ── */
-    .section {
+    /* FOOTER NOTE */
+    .footnote {
       position: relative;
       z-index: 1;
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--dark-red);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--off-white);
-      max-width: 640px;
-    }
-
-    .section-title em {
-      font-style: normal;
-      color: var(--hazel);
-    }
-
-    /* ── THREE PILLARS ── */
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5px;
-      margin-top: 4rem;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .pillar {
-      background: var(--bg);
-      padding: 2.5rem 2rem;
-      border-top: 2px solid transparent;
-      transition: border-color 0.3s;
-    }
-
-    .pillar:hover { border-color: var(--hazel); }
-
-    .pillar-num {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--hazel);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .pillar-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--off-white);
-      margin-bottom: 0.75rem;
-    }
-
-    .pillar-text {
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.7;
-    }
-
-    /* ── QUIZ CTA SECTION ── */
-    .quiz-section {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(135deg, rgba(139,26,26,0.08) 0%, rgba(200,146,42,0.06) 100%);
-      border-top: 1px solid rgba(200,146,42,0.15);
-      border-bottom: 1px solid rgba(200,146,42,0.15);
-      padding: 6rem 2rem;
       text-align: center;
-    }
-
-    .quiz-section .section-label { text-align: center; }
-
-    .quiz-title {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      color: var(--off-white);
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
-    }
-
-    .quiz-title em {
-      font-style: normal;
-      color: var(--hazel);
-    }
-
-    .quiz-sub {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--gray);
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-
-    /* ── YOUTUBE SECTION ── */
-    .yt-section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .yt-text .section-title { max-width: 100%; }
-
-    .yt-text p {
-      margin-top: 1.2rem;
-      font-size: 0.92rem;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.8;
-    }
-
-    .yt-text .btn-primary { margin-top: 2rem; }
-
-    .yt-videos {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .yt-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      text-decoration: none;
-      transition: border-color 0.3s, background 0.3s;
-    }
-
-    .yt-card:hover {
-      border-color: rgba(200,146,42,0.3);
-      background: rgba(200,146,42,0.04);
-    }
-
-    .yt-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--dark-red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .yt-icon svg {
-      width: 14px;
-      height: 14px;
-      fill: var(--off-white);
-    }
-
-    .yt-card-title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--off-white);
-      line-height: 1.4;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 3rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .footer-brand {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--hazel);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      font-size: 0.75rem;
-      color: var(--gray);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover { color: var(--off-white); }
-
-    .footer-copy {
-      font-size: 0.7rem;
+      padding: 2rem;
+      font-size: 0.72rem;
       color: rgba(138,138,138,0.5);
-      width: 100%;
-      text-align: center;
-      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto;
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1.25rem 1.5rem; }
       .nav-links { display: none; }
+      .space-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
-      .yt-section {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media (max-width: 480px) {
+      .space-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -498,137 +477,559 @@
 
   <!-- NAV -->
   <nav>
+    <a href="https://3rdspaceconsulting.co" class="nav-brand">3rd Space Consulting</a>
     <ul class="nav-links">
-      <li><a href="#why">About</a></li>
-      <li><a href="#quiz">Quiz</a></li>
-      <li><a href="#youtube">YouTube</a></li>
+      <li><a href="https://3rdspaceconsulting.co#why">About</a></li>
+      <li><a href="https://3rdspaceconsulting.co#quiz">Quiz</a></li>
+      <li><a href="https://3rdspaceconsulting.co#youtube">YouTube</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-eyebrow">3rd Space Consulting</p>
-    <h1 class="hero-headline">You are not meant<br>to be <em>alone.</em></h1>
-    <p class="hero-sub">Adult loneliness is an epidemic — but it's solvable. Discover the social life that actually fits you.</p>
-    <div class="hero-cta">
-      <a href="https://quiz.3rdspaceconsulting.co" target="_blank" rel="noopener" class="btn-primary">Take the Free Quiz →</a>
-      <a href="https://www.youtube.com/@3rdSpaceConsulting" class="btn-secondary">
-        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.74 12.14 12.14 0 0 0-8.45 3.77 12.06 12.06 0 0 0-2.74 8.45 4.83 4.83 0 0 1 2.74 3.77 12.14 12.14 0 0 0 8.45-3.77 12.06 12.06 0 0 0 2.74-8.45z"/></svg>
-        Watch on YouTube
-      </a>
-    </div>
+    <h1 class="hero-headline">What will your <em>social life</em> actually cost?</h1>
+    <p class="hero-sub">Select your 3rd Space and enter your estimated costs to see a real monthly breakdown — no guessing.</p>
+    <div class="divider"></div>
   </section>
 
-  <!-- WHY SECTION -->
-  <div class="section" id="why">
-    <p class="section-label reveal">The Problem</p>
-    <h2 class="section-title reveal">Most people leave their social life <em>to chance.</em></h2>
+  <!-- CALCULATOR -->
+  <div class="calculator-wrapper">
 
-    <div class="pillars">
-      <div class="pillar reveal">
-        <div class="pillar-num">01</div>
-        <div class="pillar-title">Loneliness is at epidemic levels</div>
-        <p class="pillar-text">Adults are more isolated than at any point in modern history — and most don't have a plan to fix it.</p>
+    <!-- SELECT SPACE -->
+    <h2 class="step-title">Select your 3rd Space</h2>
+
+    <div class="space-grid">
+      <button class="space-btn" data-space="bowling" onclick="selectSpace('bowling', this)">🎳 Bowling League</button>
+      <button class="space-btn" data-space="boardgames" onclick="selectSpace('boardgames', this)">🎲 Board Game Night</button>
+      <button class="space-btn" data-space="timeleft" onclick="selectSpace('timeleft', this)">🍽️ Timeleft Dinners</button>
+      <button class="space-btn" data-space="nature" onclick="selectSpace('nature', this)">🌿 Nature Walks</button>
+      <button class="space-btn" data-space="dance" onclick="selectSpace('dance', this)">💃 Dance Classes</button>
+      <button class="space-btn" data-space="sports" onclick="selectSpace('sports', this)">🏈 Sports Watch Parties</button>
+    </div>
+
+    <!-- BOWLING -->
+    <div id="bowling" class="calc-section">
+      <div class="space-header">
+        <div class="space-name">Bowling League</div>
+        <div class="space-need">Primary Need: Belonging</div>
       </div>
-      <div class="pillar reveal">
-        <div class="pillar-num">02</div>
-        <div class="pillar-title">Generic advice doesn't work</div>
-        <p class="pillar-text">"Just join a club" ignores the fact that different people have different social needs. One size fits none.</p>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Entry Cost</div>
+        </div>
+        <p>Bowling leagues require a USBC membership ($25/year) plus a weekly lane fee paid to your league. These are fixed costs that don't change week to week.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Weekly league fee ($)</label>
+            <input type="number" id="bowling-weekly-fee" value="24" min="0" oninput="calcBowling()" />
+          </div>
+          <div class="input-group">
+            <label>Weeks per season</label>
+            <input type="number" id="bowling-weeks" value="36" min="1" max="52" oninput="calcBowling()" />
+          </div>
+        </div>
+        <p class="input-hint">USBC membership is $25/year (~$2.08/month), already included in the calculation.</p>
       </div>
-      <div class="pillar reveal">
-        <div class="pillar-num">03</div>
-        <div class="pillar-title">The right environment changes everything</div>
-        <p class="pillar-text">When you find spaces that match how you're wired, connection stops feeling forced — and starts feeling natural.</p>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Food &amp; Drinks</div>
+        </div>
+        <p>Most bowling alleys have a bar and grill. Look up your local alley's menu to estimate your typical spend per visit.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Spend per visit ($)</label>
+            <input type="number" id="bowling-food" value="16" min="0" oninput="calcBowling()" />
+          </div>
+          <div class="input-group">
+            <label>Visits per month</label>
+            <input type="number" id="bowling-visits" value="4" min="0" oninput="calcBowling()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Gear &amp; Equipment</div>
+          <div class="cost-card-fixed">Upfront cost shown</div>
+        </div>
+        <p>You don't need your own equipment to join a league — house balls and rental shoes are available. These costs are for bowlers who want their own gear.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Bowling shoes ($)</label>
+            <input type="number" id="bowling-shoes" value="0" min="0" oninput="calcBowling()" />
+          </div>
+          <div class="input-group">
+            <label>Bowling ball(s) ($)</label>
+            <input type="number" id="bowling-ball" value="0" min="0" oninput="calcBowling()" />
+          </div>
+          <div class="input-group">
+            <label>Ball bag ($)</label>
+            <input type="number" id="bowling-bag" value="0" min="0" oninput="calcBowling()" />
+          </div>
+        </div>
+        <p class="input-hint">Typical costs: Shoes $150-200 · Entry ball ~$90 · Double roller bag ~$110. Enter $0 if starting with house equipment.</p>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Social Spending</div>
+        </div>
+        <p>Buying a round for your team is optional but common. Enter $0 if you prefer not to, or estimate your typical spend.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Per month ($)</label>
+            <input type="number" id="bowling-social" value="0" min="0" oninput="calcBowling()" />
+          </div>
+        </div>
+        <p class="input-hint">A round of drinks typically runs $20-40 depending on team size.</p>
+      </div>
+
+      <div id="bowling-result" class="result-box" style="display:none;">
+        <div class="result-label">Your estimated monthly cost</div>
+        <div class="result-amount" id="bowling-total">$0</div>
+        <div class="result-per">per month</div>
+        <div class="result-breakdown" id="bowling-breakdown"></div>
+        <div class="result-cta-group">
+          <a href="https://3rdspaceconsulting.co" class="btn-primary">Learn more at 3rdspaceconsulting.co →</a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- QUIZ SECTION -->
-  <section class="quiz-section" id="quiz">
-    <p class="section-label reveal">Free Quiz</p>
-    <div class="divider" style="margin-bottom:2rem;"></div>
-    <h2 class="quiz-title reveal">Find Your <em>Third Space.</em></h2>
-    <p class="quiz-sub reveal">Answer a few questions and get matched to the social environments that actually fit how you're wired.</p>
-    <div class="reveal">
-      <a href="https://quiz.3rdspaceconsulting.co" target="_blank" rel="noopener" class="btn-primary">Take the 3rd Space Quiz →</a>
-    </div>
-  </section>
-
-  <!-- YOUTUBE SECTION -->
-  <section id="youtube">
-    <div class="yt-section">
-      <div class="yt-text reveal">
-        <p class="section-label">On YouTube</p>
-        <h2 class="section-title">Real strategies.<br><em>Real results.</em></h2>
-        <p>Weekly videos on friendship, belonging, and building a social life that actually fits you — from someone who went from 24 years of isolation to an active, thriving community.</p>
-        <a href="https://www.youtube.com/@3rdspaceconsulting" target="_blank" rel="noopener" class="btn-primary">Subscribe on YouTube →</a>
+    <!-- BOARD GAMES -->
+    <div id="boardgames" class="calc-section">
+      <div class="space-header">
+        <div class="space-name">Board Game Night</div>
+        <div class="space-need">Primary Need: Stimulation</div>
       </div>
-      <div class="yt-videos">
-        <a href="https://youtu.be/KdoHBQ-sDBE" target="_blank" rel="noopener" class="yt-card reveal">
-          <div class="yt-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Entry Cost</div>
+          <div class="cost-card-fixed">$0</div>
+        </div>
+        <p>Most board game meetups are free to attend. No membership, no cover charge — just show up.</p>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Food &amp; Drinks</div>
+        </div>
+        <p>Many game nights are hosted at bars, restaurants, or game cafes. Look up your local venue's menu to estimate your typical spend per visit.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Spend per visit ($)</label>
+            <input type="number" id="bg-food" value="14" min="0" oninput="calcBoardgames()" />
           </div>
-          <span class="yt-card-title">I Was Isolated for 24 Years. Now I Have an Active Social Life.</span>
-        </a>
-        <a href="https://youtu.be/jMbomcqY7vQ" target="_blank" rel="noopener" class="yt-card reveal">
-          <div class="yt-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          <div class="input-group">
+            <label>Visits per month</label>
+            <input type="number" id="bg-visits" value="4" min="0" oninput="calcBoardgames()" />
           </div>
-          <span class="yt-card-title">The Hidden Reason Your Friendships Are Fading</span>
-        </a>
-        <a href="https://youtu.be/im9_25DF7pc" target="_blank" rel="noopener" class="yt-card reveal">
-          <div class="yt-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Games &amp; Equipment</div>
+        </div>
+        <p>Most meetups have games available — you don't need to bring your own. Enter a cost only if you plan to buy games to contribute.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Games budget per month ($)</label>
+            <input type="number" id="bg-games" value="0" min="0" oninput="calcBoardgames()" />
           </div>
-          <span class="yt-card-title">Why Hobbies Are The Cheat Code For Making Friends As An Adult</span>
-        </a>
-        <a href="https://youtu.be/ktUD9QqZQb0" target="_blank" rel="noopener" class="yt-card reveal">
-          <div class="yt-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-          </div>
-          <span class="yt-card-title">Pick 3rd Spaces Based on Your Needs</span>
-        </a>
-        <a href="https://youtu.be/vJFtyUH6kis" target="_blank" rel="noopener" class="yt-card reveal">
-          <div class="yt-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-          </div>
-          <span class="yt-card-title">I Tried Bowling for 46 Weeks. Here's What I Learned.</span>
-        </a>
-        <a href="https://youtu.be/TT3fsCyl1WU" target="_blank" rel="noopener" class="yt-card reveal">
-          <div class="yt-icon">
-            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-          </div>
-          <span class="yt-card-title">Most People Leave Their Social Life to Chance. Don't.</span>
-        </a>
+        </div>
+      </div>
+
+      <div id="boardgames-result" class="result-box" style="display:none;">
+        <div class="result-label">Your estimated monthly cost</div>
+        <div class="result-amount" id="boardgames-total">$0</div>
+        <div class="result-per">per month</div>
+        <div class="result-breakdown" id="boardgames-breakdown"></div>
+        <div class="result-cta-group">
+          <a href="https://3rdspaceconsulting.co" class="btn-primary">Learn more at 3rdspaceconsulting.co →</a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-brand">3rd Space Consulting</span>
-    <ul class="footer-links">
-      <li><a href="https://www.youtube.com/@3rdspaceconsulting" target="_blank">YouTube</a></li>
-      <li><a href="https://www.instagram.com/3rdspaceconsulting" target="_blank">Instagram</a></li>
-      <li><a href="https://twitter.com/3rdSpaceConsult" target="_blank">Twitter/X</a></li>
-      <li><a href="https://www.facebook.com/3rdSpaceConsulting" target="_blank">Facebook</a></li>
-      <li><a href="https://www.reddit.com/u/3rdSpaceConsulting" target="_blank">Reddit</a></li>
-    </ul>
-    <p class="footer-copy">© 2026 3rd Space Consulting LLC · Bringing People Back Together</p>
-  </footer>
+    <!-- TIMELEFT -->
+    <div id="timeleft" class="calc-section">
+      <div class="space-header">
+        <div class="space-name">Timeleft Dinners</div>
+        <div class="space-need">Primary Need: Low-Stakes Connection</div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Membership / Entry Cost</div>
+        </div>
+        <p>Timeleft requires a subscription to book dinners. Pricing varies by city — US members typically pay between $10.50 and $20 per month depending on the plan length.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Subscription plan</label>
+            <select id="timeleft-sub" onchange="calcTimeleft()">
+              <option value="20">1 month — ~$20/month</option>
+              <option value="19">3 months — ~$19/month ($57 total)</option>
+              <option value="10.50" selected>6 months — ~$10.50/month ($62.99 total)</option>
+            </select>
+          </div>
+        </div>
+        <p class="input-hint">Subscription pricing varies by city. Visit timeleft.com for current rates in your area.</p>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Food &amp; Drinks</div>
+        </div>
+        <p>Your subscription does not include the cost of food or drinks — you pay the restaurant directly. Look up your local Timeleft venue's menu to estimate your typical spend per dinner.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Food spend per dinner ($)</label>
+            <input type="number" id="timeleft-food" value="35" min="0" oninput="calcTimeleft()" />
+          </div>
+          <div class="input-group">
+            <label>Dinners per month</label>
+            <input type="number" id="timeleft-visits" value="2" min="0" oninput="calcTimeleft()" />
+          </div>
+        </div>
+        <p class="input-hint">Drinks are separate. Add your estimated drink spend to the food amount if applicable.</p>
+      </div>
+
+      <div id="timeleft-result" class="result-box" style="display:none;">
+        <div class="result-label">Your estimated monthly cost</div>
+        <div class="result-amount" id="timeleft-total">$0</div>
+        <div class="result-per">per month</div>
+        <div class="result-breakdown" id="timeleft-breakdown"></div>
+        <div class="result-cta-group">
+          <a href="https://3rdspaceconsulting.co" class="btn-primary">Learn more at 3rdspaceconsulting.co →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATURE WALKS -->
+    <div id="nature" class="calc-section">
+      <div class="space-header">
+        <div class="space-name">Nature Walks</div>
+        <div class="space-need">Primary Need: Restoration</div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Entry Cost</div>
+          <div class="cost-card-fixed">$0</div>
+        </div>
+        <p>Most nature trails, parks, and greenbelts are free to access. Some state or national parks charge a day-use fee.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Park fees per month ($)</label>
+            <input type="number" id="nature-entry" value="0" min="0" oninput="calcNature()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Snacks &amp; Drinks</div>
+        </div>
+        <p>Optional — whatever you bring with you. Water, snacks, or a post-walk coffee are common.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Per walk ($)</label>
+            <input type="number" id="nature-food" value="0" min="0" oninput="calcNature()" />
+          </div>
+          <div class="input-group">
+            <label>Walks per month</label>
+            <input type="number" id="nature-visits" value="4" min="0" oninput="calcNature()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Gear</div>
+          <div class="cost-card-fixed">Upfront cost shown</div>
+        </div>
+        <p>Most people already own what they need. Optional gear like trail shoes, a water bottle, or a day pack can improve the experience.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Optional gear ($)</label>
+            <input type="number" id="nature-gear" value="0" min="0" oninput="calcNature()" />
+          </div>
+        </div>
+        <p class="input-hint">Typical trail shoes: $80-130. A quality water bottle: $20-40. Enter $0 if you already have what you need.</p>
+      </div>
+
+      <div id="nature-result" class="result-box" style="display:none;">
+        <div class="result-label">Your estimated monthly cost</div>
+        <div class="result-amount" id="nature-total">$0</div>
+        <div class="result-per">per month</div>
+        <div class="result-breakdown" id="nature-breakdown"></div>
+        <div class="result-cta-group">
+          <a href="https://3rdspaceconsulting.co" class="btn-primary">Learn more at 3rdspaceconsulting.co →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DANCE CLASSES -->
+    <div id="dance" class="calc-section">
+      <div class="space-header">
+        <div class="space-name">Dance Classes</div>
+        <div class="space-need">Primary Need: Self-Expression</div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Class Costs</div>
+        </div>
+        <p>Drop-in dance classes typically range from $5-25 per class. Special events and workshops can run higher.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Cost per class ($)</label>
+            <input type="number" id="dance-class" value="10" min="0" oninput="calcDance()" />
+          </div>
+          <div class="input-group">
+            <label>Classes per month</label>
+            <input type="number" id="dance-visits" value="4" min="0" oninput="calcDance()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Dance Shoes</div>
+          <div class="cost-card-fixed">Upfront cost shown</div>
+        </div>
+        <p>Dedicated dance shoes make a real difference. Research shows the average person sticks with a new hobby for about 16 months — we show the full upfront cost so you can plan accordingly.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Dance shoes budget ($)</label>
+            <input type="number" id="dance-shoes" value="0" min="0" oninput="calcDance()" />
+          </div>
+        </div>
+        <p class="input-hint">Fuego dance sneakers (great for social dancing): $160-165. Enter $0 if starting without dedicated shoes.</p>
+      </div>
+
+      <div id="dance-result" class="result-box" style="display:none;">
+        <div class="result-label">Your estimated monthly cost</div>
+        <div class="result-amount" id="dance-total">$0</div>
+        <div class="result-per">per month + upfront gear costs</div>
+        <div class="result-breakdown" id="dance-breakdown"></div>
+        <div class="result-cta-group">
+          <a href="https://3rdspaceconsulting.co" class="btn-primary">Learn more at 3rdspaceconsulting.co →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPORTS WATCH PARTIES -->
+    <div id="sports" class="calc-section">
+      <div class="space-header">
+        <div class="space-name">Sports Watch Parties</div>
+        <div class="space-need">Primary Need: Belonging</div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Entry Cost</div>
+          <div class="cost-card-fixed">$0</div>
+        </div>
+        <p>Watch parties at bars and restaurants are free to attend. No tickets, no cover charge.</p>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Food &amp; Drinks</div>
+        </div>
+        <p>Your main cost is whatever you order at the venue. Look up your local watch party spot's menu to estimate your typical spend per game.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Spend per game ($)</label>
+            <input type="number" id="sports-food" value="20" min="0" oninput="calcSports()" />
+          </div>
+          <div class="input-group">
+            <label>Games per month</label>
+            <input type="number" id="sports-visits" value="2" min="0" oninput="calcSports()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-card">
+        <div class="cost-card-header">
+          <div class="cost-card-title">Social Spending</div>
+        </div>
+        <p>Buying a round for friends is optional but common at watch parties. Enter $0 if you prefer not to.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Per month ($)</label>
+            <input type="number" id="sports-social" value="0" min="0" oninput="calcSports()" />
+          </div>
+        </div>
+        <p class="input-hint">A round of drinks typically runs $20-40 depending on group size.</p>
+      </div>
+
+      <div id="sports-result" class="result-box" style="display:none;">
+        <div class="result-label">Your estimated monthly cost</div>
+        <div class="result-amount" id="sports-total">$0</div>
+        <div class="result-per">per month</div>
+        <div class="result-breakdown" id="sports-breakdown"></div>
+        <div class="result-cta-group">
+          <a href="https://3rdspaceconsulting.co" class="btn-primary">Learn more at 3rdspaceconsulting.co →</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end calculator-wrapper -->
+
+  <p class="footnote">© 2026 3rd Space Consulting LLC · Estimates based on real cost data. Your actual costs will vary based on location, frequency, and personal choices.</p>
 
   <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    function selectSpace(id, btn) {
+      // deactivate all buttons
+      document.querySelectorAll('.space-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // hide all sections
+      document.querySelectorAll('.calc-section').forEach(s => s.classList.remove('visible'));
+
+      // show selected
+      document.getElementById(id).classList.add('visible');
+
+      // scroll to section
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // trigger calculation
+      const calcMap = {
+        bowling: calcBowling,
+        boardgames: calcBoardgames,
+        timeleft: calcTimeleft,
+        nature: calcNature,
+        dance: calcDance,
+        sports: calcSports
+      };
+      calcMap[id]();
+    }
+
+    function fmt(n) {
+      return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function showResult(id, total, rows) {
+      const resultBox = document.getElementById(id + '-result');
+      const totalEl = document.getElementById(id + '-total');
+      const breakdownEl = document.getElementById(id + '-breakdown');
+
+      totalEl.textContent = fmt(total);
+      breakdownEl.innerHTML = rows.map((r, i) =>
+        `<div class="breakdown-row${i === rows.length - 1 ? ' total-row' : ''}">
+          <span>${r.label}</span><span>${fmt(r.value)}</span>
+        </div>`
+      ).join('');
+
+      resultBox.style.display = 'block';
+    }
+
+    function calcBowling() {
+      const weeklyFee = parseFloat(document.getElementById('bowling-weekly-fee').value) || 0;
+      const weeks = parseFloat(document.getElementById('bowling-weeks').value) || 0;
+      const food = parseFloat(document.getElementById('bowling-food').value) || 0;
+      const visits = parseFloat(document.getElementById('bowling-visits').value) || 0;
+      const shoes = parseFloat(document.getElementById('bowling-shoes').value) || 0;
+      const ball = parseFloat(document.getElementById('bowling-ball').value) || 0;
+      const bag = parseFloat(document.getElementById('bowling-bag').value) || 0;
+      const social = parseFloat(document.getElementById('bowling-social').value) || 0;
+
+      const entryMonthly = (weeklyFee * weeks / 12) + (25 / 12);
+      const foodMonthly = food * visits;
+      const gearUpfront = shoes + ball + bag;
+      const total = entryMonthly + foodMonthly + social;
+
+      showResult('bowling', total, [
+        { label: 'League fees + USBC', value: entryMonthly },
+        { label: 'Food & drinks', value: foodMonthly },
+        { label: 'Social spending', value: social },
+        { label: 'Gear (upfront, not included in monthly)', value: gearUpfront },
+        { label: 'Monthly total (excluding gear)', value: total }
+      ]);
+    }
+
+    function calcBoardgames() {
+      const food = parseFloat(document.getElementById('bg-food').value) || 0;
+      const visits = parseFloat(document.getElementById('bg-visits').value) || 0;
+      const games = parseFloat(document.getElementById('bg-games').value) || 0;
+
+      const foodMonthly = food * visits;
+      const total = foodMonthly + games;
+
+      showResult('boardgames', total, [
+        { label: 'Entry cost', value: 0 },
+        { label: 'Food & drinks', value: foodMonthly },
+        { label: 'Games budget', value: games },
+        { label: 'Monthly total', value: total }
+      ]);
+    }
+
+    function calcTimeleft() {
+      const sub = parseFloat(document.getElementById('timeleft-sub').value) || 0;
+      const food = parseFloat(document.getElementById('timeleft-food').value) || 0;
+      const visits = parseFloat(document.getElementById('timeleft-visits').value) || 0;
+
+      const foodMonthly = food * visits;
+      const total = sub + foodMonthly;
+
+      showResult('timeleft', total, [
+        { label: 'Subscription', value: sub },
+        { label: 'Food per dinner × dinners', value: foodMonthly },
+        { label: 'Monthly total', value: total }
+      ]);
+    }
+
+    function calcNature() {
+      const entry = parseFloat(document.getElementById('nature-entry').value) || 0;
+      const food = parseFloat(document.getElementById('nature-food').value) || 0;
+      const visits = parseFloat(document.getElementById('nature-visits').value) || 0;
+      const gear = parseFloat(document.getElementById('nature-gear').value) || 0;
+
+      const foodMonthly = food * visits;
+      const total = entry + foodMonthly;
+
+      showResult('nature', total, [
+        { label: 'Park fees', value: entry },
+        { label: 'Snacks & drinks', value: foodMonthly },
+        { label: 'Gear (upfront, not included in monthly)', value: gear },
+        { label: 'Monthly total (excluding gear)', value: total }
+      ]);
+    }
+
+    function calcDance() {
+      const classCost = parseFloat(document.getElementById('dance-class').value) || 0;
+      const visits = parseFloat(document.getElementById('dance-visits').value) || 0;
+      const shoes = parseFloat(document.getElementById('dance-shoes').value) || 0;
+
+      const classMonthly = classCost * visits;
+      const total = classMonthly;
+
+      showResult('dance', total, [
+        { label: 'Classes', value: classMonthly },
+        { label: 'Dance shoes (upfront, not in monthly)', value: shoes },
+        { label: 'Monthly total (excluding shoes)', value: total }
+      ]);
+    }
+
+    function calcSports() {
+      const food = parseFloat(document.getElementById('sports-food').value) || 0;
+      const visits = parseFloat(document.getElementById('sports-visits').value) || 0;
+      const social = parseFloat(document.getElementById('sports-social').value) || 0;
+
+      const foodMonthly = food * visits;
+      const total = foodMonthly + social;
+
+      showResult('sports', total, [
+        { label: 'Entry cost', value: 0 },
+        { label: 'Food & drinks', value: foodMonthly },
+        { label: 'Social spending', value: social },
+        { label: 'Monthly total', value: total }
+      ]);
+    }
   </script>
 
 </body>
