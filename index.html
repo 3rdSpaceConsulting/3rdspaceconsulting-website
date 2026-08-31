@@ -279,10 +279,119 @@
     }
 
     .platform-icon.yt { background: var(--dark-red); }
-    .platform-icon.tw { background: var(--hazel); }
+    .platform-icon.tw { background: #9146FF; }
 
     .platform-icon svg { width: 16px; height: 16px; fill: var(--off-white); }
-    .platform-icon.tw svg { fill: var(--bg); }
+
+    .intro-section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 3.5rem;
+      overflow: hidden;
+    }
+
+    .intro-section::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(139,26,26,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .intro-kicker {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--hazel);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-photo {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(200,146,42,0.3);
+      background: rgba(255,255,255,0.03);
+      flex-shrink: 0;
+    }
+
+    .intro-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .intro-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .intro-text h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      color: var(--off-white);
+      margin-bottom: 0.4rem;
+    }
+
+    .intro-text .intro-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--hazel);
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-questions {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-questions li {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-questions li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 6px; height: 6px;
+      background: var(--dark-red);
+    }
+
+    .intro-close {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .intro-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .intro-questions li { text-align: left; }
+    }
 
     .platform-text { text-align: left; }
 
@@ -370,10 +479,20 @@
     <a href="/" class="nav-brand">3rd Space Consulting</a>
   </nav>
 
-  <section class="hero">
-    <h1 class="hero-headline">You are not meant<br>to be alone.</h1>
-    <p class="hero-sub">Your guide to 3rd Spaces.</p>
-    <div class="hero-cta">
+  <section class="intro-section">
+    <div class="intro-photo reveal">
+      <!-- REPLACE src below with your own photo -->
+      <img src="Profile%20Picture.jpg" alt="Robert Simmons" onerror="this.style.display='none'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center'; this.parentElement.innerHTML='<span style=color:#8A8A8A;font-size:0.75rem;text-align:center;padding:1rem;>Add your photo here</span>'" />
+    </div>
+    <div class="intro-text reveal">
+      <h2>Robert Simmons.</h2>
+      <p class="intro-title">Principal Consultant, 3rd Space Consulting</p>
+      <ul class="intro-questions">
+        <li>Are you looking for your next 3rd Space?</li>
+        <li>Are you wanting to create your own community?</li>
+        <li>Are you a business looking for innovative solutions?</li>
+      </ul>
+      <p class="intro-close">Let's work together.</p>
       <a href="/solutions" class="btn-primary">Work With Me →</a>
     </div>
   </section>
