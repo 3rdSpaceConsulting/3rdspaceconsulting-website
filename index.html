@@ -45,7 +45,7 @@
       z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       padding: 1.5rem 3rem;
       background: linear-gradient(to bottom, rgba(5,5,5,0.95) 0%, transparent 100%);
     }
@@ -61,6 +61,7 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 2rem;
       list-style: none;
     }
@@ -77,19 +78,21 @@
 
     .nav-links a:hover { color: var(--off-white); }
 
-    .hero {
+    .intro-section {
       position: relative;
+      z-index: 1;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 6rem;
+      padding: 8rem 2rem 5rem;
+      max-width: 1150px;
+      margin: 0 auto;
+      gap: 5rem;
       overflow: hidden;
     }
 
-    .hero::after {
+    .intro-section::after {
       content: '';
       position: absolute;
       top: 50%; left: 50%;
@@ -97,41 +100,88 @@
       width: 700px; height: 700px;
       background: radial-gradient(ellipse at center, rgba(139,26,26,0.12) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
     }
 
-    .hero-headline {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
+    .intro-photo {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(200,146,42,0.3);
+      background: rgba(255,255,255,0.03);
+      flex-shrink: 0;
+    }
+
+    .intro-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .intro-photo { width: 260px; height: 260px; }
+    }
+
+    .intro-text {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+    }
+
+    .intro-text h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
       font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
       color: var(--off-white);
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.2s;
+      margin-bottom: 0.4rem;
     }
 
-    .hero-sub {
-      margin-top: 1.5rem;
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    .intro-text .intro-title {
+      font-size: 0.85rem;
       font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--hazel);
-      max-width: 640px;
-      line-height: 1.5;
-      position: relative;
-      z-index: 1;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.45s;
+      margin-bottom: 1.5rem;
     }
 
-    .hero-cta {
-      margin-top: 2.5rem;
+    .intro-questions {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      text-align: left;
+    }
+
+    .intro-questions li {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      padding-left: 1.2rem;
       position: relative;
-      z-index: 1;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.7s;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-questions li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 6px; height: 6px;
+      background: var(--dark-red);
+    }
+
+    .intro-close {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .intro-section { flex-direction: column; text-align: center; }
+      .intro-questions li { text-align: left; }
     }
 
     .btn-primary {
@@ -159,14 +209,6 @@
       padding: 6rem 2rem;
       max-width: 900px;
       margin: 0 auto;
-      text-align: center;
-    }
-
-    .section p,
-    .citation {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
     }
 
     .section-label {
@@ -205,6 +247,9 @@
       color: var(--gray);
       line-height: 1.85;
       max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
 
     .section p + p { margin-top: 1.2rem; }
@@ -213,6 +258,8 @@
       color: var(--off-white);
       font-weight: 600;
     }
+
+    .section p a { color: var(--hazel); }
 
     .citation {
       margin-top: 1.5rem;
@@ -224,6 +271,9 @@
       color: var(--gray);
       font-style: italic;
       max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
 
     .section-alt {
@@ -276,126 +326,6 @@
 
     .platform-icon svg { width: 16px; height: 16px; fill: var(--off-white); }
 
-    .intro-section {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 2rem 5rem;
-      max-width: 1150px;
-      margin: 0 auto;
-      gap: 5rem;
-      overflow: hidden;
-    }
-
-    .intro-section::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px; height: 700px;
-      background: radial-gradient(ellipse at center, rgba(139,26,26,0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .intro-kicker {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--hazel);
-      letter-spacing: 0.02em;
-      margin-bottom: 0.75rem;
-    }
-
-    .intro-photo {
-      width: 380px;
-      height: 380px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(200,146,42,0.3);
-      background: rgba(255,255,255,0.03);
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 640px) {
-      .intro-photo { width: 260px; height: 260px; }
-    }
-
-    .intro-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .intro-text {
-      flex: 1;
-      min-width: 0;
-      text-align: center;
-    }
-
-    .intro-questions {
-      display: inline-block;
-      text-align: left;
-    }
-
-    .intro-text h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-      font-weight: 900;
-      color: var(--off-white);
-      margin-bottom: 0.4rem;
-    }
-
-    .intro-text .intro-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--hazel);
-      margin-bottom: 1.5rem;
-    }
-
-    .intro-questions {
-      list-style: none;
-      margin-bottom: 1.5rem;
-    }
-
-    .intro-questions li {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.7;
-      padding-left: 1.2rem;
-      position: relative;
-      margin-bottom: 0.5rem;
-    }
-
-    .intro-questions li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.65rem;
-      width: 6px; height: 6px;
-      background: var(--dark-red);
-    }
-
-    .intro-close {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--off-white);
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 640px) {
-      .intro-section {
-        flex-direction: column;
-        text-align: center;
-      }
-      .intro-questions li { text-align: left; }
-    }
-
     .platform-text { text-align: left; }
 
     .platform-label {
@@ -412,13 +342,6 @@
       color: var(--off-white);
     }
 
-    .connect-section {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 2rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
     .newsletter-section {
       position: relative;
       z-index: 1;
@@ -430,6 +353,13 @@
     .newsletter-wrap {
       max-width: 500px;
       margin: 2rem auto 0;
+    }
+
+    .connect-section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
     .form-wrap {
@@ -514,8 +444,6 @@
       .form-row { grid-template-columns: 1fr; gap: 0; }
     }
 
-    .connect-cta { margin-top: 2.5rem; }
-
     footer {
       position: relative;
       z-index: 1;
@@ -544,13 +472,21 @@
 
     @media (max-width: 768px) {
       nav { padding: 1.25rem 1.5rem; }
-      .content-links { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
   <nav>
+    <ul class="nav-links">
+      <li><a href="/" aria-label="Home" style="display: inline-flex; align-items: center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="#connect-form">Contact</a></li>
+    </ul>
     <a href="/" class="nav-brand">3rd Space Consulting</a>
   </nav>
 
@@ -591,7 +527,7 @@
       <div class="reveal">
         <p>I spent 24 years isolated. Not by circumstance — by default, the way most people quietly are, without ever naming it.</p>
         <p>I didn't fix that by reading about it. I fixed it by showing up — to a bowling alley, a dance floor, a card table, a community band — over and over, on purpose, until those places became mine.</p>
-        <p>3rd Space Consulting exists because I built my social life with no guidance from anyone. Now I help businesses establish their own community, or connect them to others. Everything I teach, I'm actively living. Connect with me to create your own custom solution.</p>
+        <p>3rd Space Consulting exists because I built my social life with no guidance from anyone. <a href="about.html">Read my full story →</a></p>
       </div>
     </div>
   </section>
@@ -628,7 +564,7 @@
     <p class="reveal" style="margin: 0 auto; max-width: 500px; text-align:center;">Monthly insights on everything related to 3rd Space, including my in-person observations and research with AI assistance. Launching October — sign up now to be the first to get it.</p>
     <div class="newsletter-wrap reveal">
       <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-      <form action="https://app.kit.com/forms/9288517/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9288517" data-uid="164c02935b" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;You're on the list! The newsletter launches in October — you'll be the first to get it.&quot;,&quot;redirect_url&quot;:&quot;https://3rdspaceconsulting.gumroad.com/l/3rdspace-free-guide&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800" style="background-color: transparent; border-radius: 0;"><div data-style="full"><div data-element="column" class="formkit-background"></div><div data-element="column" class="formkit-column"><div class="formkit-header" data-element="header" style="color: rgb(245, 240, 234); font-size: 28px; font-weight: 400;"><h2>3rd Space Newsletter</h2></div><ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul><div data-element="fields" class="seva-fields formkit-fields"><div class="formkit-field"><input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email" style="color: rgb(139, 139, 139); border-color: rgb(221, 224, 228); font-weight: 400;"></div><button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(139, 26, 26); border-radius: 0;"><div class="formkit-spinner"><div></div><div></div><div></div></div><span class="">Subscribe →</span></button></div><div class="formkit-disclaimer" data-element="disclaimer" style="color: rgb(139, 139, 139); font-size: 13px;"><p>I respect your privacy. Unsubscribe at anytime.</p></div><div class="formkit-powered-by-convertkit-container"><a href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic" data-element="powered-by" class="formkit-powered-by-convertkit" data-variant="light" target="_blank" rel="nofollow noopener">Built with Kit</a></div></div></div><style>.formkit-form[data-uid="164c02935b"] *{box-sizing:border-box;}.formkit-form[data-uid="164c02935b"]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}.formkit-form[data-uid="164c02935b"] legend{border:none;font-size:inherit;margin-bottom:10px;padding:0;position:relative;display:table;}.formkit-form[data-uid="164c02935b"] fieldset{border:0;padding:0.01em 0 0 0;margin:0;min-width:0;}.formkit-form[data-uid="164c02935b"] body:not(:-moz-handler-blocked) fieldset{display:table-cell;}.formkit-form[data-uid="164c02935b"] h1,.formkit-form[data-uid="164c02935b"] h2,.formkit-form[data-uid="164c02935b"] h3,.formkit-form[data-uid="164c02935b"] h4,.formkit-form[data-uid="164c02935b"] h5,.formkit-form[data-uid="164c02935b"] h6{color:inherit;font-size:inherit;font-weight:inherit;}.formkit-form[data-uid="164c02935b"] h2{font-size:1.5em;margin:1em 0;}.formkit-form[data-uid="164c02935b"] h3{font-size:1.17em;margin:1em 0;}.formkit-form[data-uid="164c02935b"] p{color:inherit;font-size:inherit;font-weight:inherit;}.formkit-form[data-uid="164c02935b"] ol:not([template-default]),.formkit-form[data-uid="164c02935b"] ul:not([template-default]),.formkit-form[data-uid="164c02935b"] blockquote:not([template-default]){text-align:left;}.formkit-form[data-uid="164c02935b"] p:not([template-default]),.formkit-form[data-uid="164c02935b"] hr:not([template-default]),.formkit-form[data-uid="164c02935b"] blockquote:not([template-default]),.formkit-form[data-uid="164c02935b"] ol:not([template-default]),.formkit-form[data-uid="164c02935b"] ul:not([template-default]){color:inherit;font-style:initial;}.formkit-form[data-uid="164c02935b"] .formkit-input,.formkit-form[data-uid="164c02935b"] .formkit-select,.formkit-form[data-uid="164c02935b"] .formkit-checkboxes{width:100%;}.formkit-form[data-uid="164c02935b"] .formkit-button,.formkit-form[data-uid="164c02935b"] .formkit-submit{border:0;color:#ffffff;cursor:pointer;display:inline-block;text-align:center;font-size:15px;font-weight:500;margin-bottom:15px;overflow:hidden;padding:0;position:relative;vertical-align:middle;}.formkit-form[data-uid="164c02935b"] .formkit-button:hover,.formkit-form[data-uid="164c02935b"] .formkit-submit:hover,.formkit-form[data-uid="164c02935b"] .formkit-button:focus,.formkit-form[data-uid="164c02935b"] .formkit-submit:focus{outline:none;}.formkit-form[data-uid="164c02935b"] .formkit-button > span,.formkit-form[data-uid="164c02935b"] .formkit-submit > span{display:block;transition:all 300ms ease-in-out;padding:12px 24px;}.formkit-form[data-uid="164c02935b"] .formkit-input{background:#ffffff;font-size:15px;padding:12px;border:1px solid #e3e3e3;flex:1 0 auto;line-height:1.4;margin:0;transition:border-color ease-out 300ms;}.formkit-form[data-uid="164c02935b"] .formkit-input:focus{outline:none;border-color:#1677be;transition:border-color ease 300ms;}.formkit-form[data-uid="164c02935b"] .formkit-input::placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="164c02935b"] .formkit-alert{background:#f9fafb;border:1px solid #e3e3e3;border-radius:5px;flex:1 0 auto;list-style:none;margin:25px auto;padding:12px;text-align:center;width:100%;}.formkit-form[data-uid="164c02935b"] .formkit-alert:empty{display:none;}.formkit-form[data-uid="164c02935b"] .formkit-alert-error{background:#fde8e2;border-color:#f2643b;color:#ea4110;}.formkit-form[data-uid="164c02935b"] .formkit-spinner{display:flex;height:0px;width:0px;margin:0 auto;position:absolute;top:0;left:0;right:0;overflow:hidden;text-align:center;transition:all 300ms ease-in-out;}.formkit-form[data-uid="164c02935b"] .formkit-spinner > div{margin:auto;width:12px;height:12px;background-color:#fff;opacity:0.3;border-radius:100%;display:inline-block;}.formkit-form[data-uid="164c02935b"] .formkit-submit[data-active] .formkit-spinner{opacity:1;height:100%;width:50px;}.formkit-form[data-uid="164c02935b"] .formkit-submit[data-active] .formkit-spinner ~ span{opacity:0;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by[data-active="false"]{opacity:0.35;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by-convertkit-container{display:flex;width:100%;margin:10px 0;position:relative;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by-convertkit{align-items:center;background-color:transparent;border-radius:9px;color:#3d3d3d;cursor:pointer;display:block;height:36px;margin:0 auto;opacity:0.4;padding:0;text-decoration:none;white-space:nowrap;overflow:hidden;width:157px;} .formkit-form[data-uid="164c02935b"]{box-shadow:none;max-width:100%;overflow:hidden;}.formkit-form[data-uid="164c02935b"] [data-style="full"]{width:100%;display:block;}.formkit-form[data-uid="164c02935b"] .formkit-background{background-position:center center;background-size:cover;}.formkit-form[data-uid="164c02935b"] .formkit-column{padding:0;position:relative;}.formkit-form[data-uid="164c02935b"] .formkit-header{display:none !important;}.formkit-form[data-uid="164c02935b"] .formkit-field{margin:0 0 10px 0;}.formkit-form[data-uid="164c02935b"] .formkit-input{width:100%;background:rgba(255,255,255,0.04) !important;border:1px solid rgba(255,255,255,0.1) !important;color:#F5F0EA !important;font-family:'Poppins',sans-serif !important;font-size:0.95rem !important;padding:0.8rem 1rem !important;border-radius:0 !important;outline:none !important;}.formkit-form[data-uid="164c02935b"] .formkit-input:focus{border-color:#C8922A !important;}.formkit-form[data-uid="164c02935b"] .formkit-input::placeholder{color:#8A8A8A !important;}.formkit-form[data-uid="164c02935b"] .formkit-fields .formkit-submit{margin-top:15px;width:100%;background-color:#8B1A1A !important;color:#F5F0EA !important;font-family:'Poppins',sans-serif !important;font-size:0.85rem !important;font-weight:700 !important;letter-spacing:0.12em !important;text-transform:uppercase !important;padding:1rem 2.4rem !important;border:none !important;border-radius:0 !important;cursor:pointer !important;transition:opacity 0.3s,transform 0.2s !important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%) !important;}.formkit-form[data-uid="164c02935b"] .formkit-fields .formkit-submit:hover{opacity:0.85 !important;}.formkit-form[data-uid="164c02935b"] .formkit-disclaimer{margin:0 0 15px 0;color:#8A8A8A !important;font-family:'Poppins',sans-serif !important;}.formkit-form[data-uid="164c02935b"] .formkit-disclaimer > p{margin:0;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by-convertkit-container{margin-bottom:0;margin-top:20px;}</style></form>
+      <form action="https://app.kit.com/forms/9288517/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9288517" data-uid="164c02935b" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;You're on the list! The newsletter launches in October — you'll be the first to get it.&quot;,&quot;redirect_url&quot;:&quot;https://3rdspaceconsulting.co&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800" style="background-color: transparent; border-radius: 0;"><div data-style="full"><div data-element="column" class="formkit-background"></div><div data-element="column" class="formkit-column"><div class="formkit-header" data-element="header" style="color: rgb(245, 240, 234); font-size: 28px; font-weight: 400;"><h2>3rd Space Newsletter</h2></div><ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul><div data-element="fields" class="seva-fields formkit-fields"><div class="formkit-field"><input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email" style="color: rgb(139, 139, 139); border-color: rgb(221, 224, 228); font-weight: 400;"></div><button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(139, 26, 26); border-radius: 0;"><div class="formkit-spinner"><div></div><div></div><div></div></div><span class="">Subscribe →</span></button></div><div class="formkit-disclaimer" data-element="disclaimer" style="color: rgb(139, 139, 139); font-size: 13px;"><p>I respect your privacy. Unsubscribe at anytime.</p></div><div class="formkit-powered-by-convertkit-container"><a href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic" data-element="powered-by" class="formkit-powered-by-convertkit" data-variant="light" target="_blank" rel="nofollow noopener">Built with Kit</a></div></div></div><style>.formkit-form[data-uid="164c02935b"] *{box-sizing:border-box;}.formkit-form[data-uid="164c02935b"]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}.formkit-form[data-uid="164c02935b"] h2{font-size:1.5em;margin:1em 0;color:inherit;}.formkit-form[data-uid="164c02935b"] .formkit-input,.formkit-form[data-uid="164c02935b"] .formkit-select{width:100%;}.formkit-form[data-uid="164c02935b"] .formkit-button,.formkit-form[data-uid="164c02935b"] .formkit-submit{border:0;color:#ffffff;cursor:pointer;display:inline-block;text-align:center;font-size:15px;font-weight:500;margin-bottom:15px;overflow:hidden;padding:0;position:relative;vertical-align:middle;}.formkit-form[data-uid="164c02935b"] .formkit-button:hover,.formkit-form[data-uid="164c02935b"] .formkit-submit:hover{outline:none;}.formkit-form[data-uid="164c02935b"] .formkit-button > span,.formkit-form[data-uid="164c02935b"] .formkit-submit > span{display:block;transition:all 300ms ease-in-out;padding:12px 24px;}.formkit-form[data-uid="164c02935b"] .formkit-input{background:#ffffff;font-size:15px;padding:12px;border:1px solid #e3e3e3;flex:1 0 auto;line-height:1.4;margin:0;transition:border-color ease-out 300ms;}.formkit-form[data-uid="164c02935b"] .formkit-input:focus{outline:none;border-color:#1677be;}.formkit-form[data-uid="164c02935b"] .formkit-input::placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="164c02935b"] .formkit-alert{background:#f9fafb;border:1px solid #e3e3e3;border-radius:5px;flex:1 0 auto;list-style:none;margin:25px auto;padding:12px;text-align:center;width:100%;}.formkit-form[data-uid="164c02935b"] .formkit-alert:empty{display:none;}.formkit-form[data-uid="164c02935b"] .formkit-spinner{display:flex;height:0px;width:0px;margin:0 auto;position:absolute;top:0;left:0;right:0;overflow:hidden;text-align:center;transition:all 300ms ease-in-out;}.formkit-form[data-uid="164c02935b"] .formkit-spinner > div{margin:auto;width:12px;height:12px;background-color:#fff;opacity:0.3;border-radius:100%;display:inline-block;}.formkit-form[data-uid="164c02935b"] .formkit-submit[data-active] .formkit-spinner{opacity:1;height:100%;width:50px;}.formkit-form[data-uid="164c02935b"] .formkit-submit[data-active] .formkit-spinner ~ span{opacity:0;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by-convertkit-container{display:flex;width:100%;margin:10px 0;position:relative;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by-convertkit{align-items:center;background-color:transparent;border-radius:9px;color:#3d3d3d;cursor:pointer;display:block;height:36px;margin:0 auto;opacity:0.4;padding:0;text-decoration:none;white-space:nowrap;overflow:hidden;width:157px;} .formkit-form[data-uid="164c02935b"]{box-shadow:none;max-width:100%;overflow:hidden;}.formkit-form[data-uid="164c02935b"] [data-style="full"]{width:100%;display:block;}.formkit-form[data-uid="164c02935b"] .formkit-background{background-position:center center;background-size:cover;}.formkit-form[data-uid="164c02935b"] .formkit-column{padding:0;position:relative;}.formkit-form[data-uid="164c02935b"] .formkit-header{display:none !important;}.formkit-form[data-uid="164c02935b"] .formkit-field{margin:0 0 10px 0;}.formkit-form[data-uid="164c02935b"] .formkit-input{width:100%;background:rgba(255,255,255,0.04) !important;border:1px solid rgba(255,255,255,0.1) !important;color:#F5F0EA !important;font-family:'Poppins',sans-serif !important;font-size:0.95rem !important;padding:0.8rem 1rem !important;border-radius:0 !important;outline:none !important;}.formkit-form[data-uid="164c02935b"] .formkit-input:focus{border-color:#C8922A !important;}.formkit-form[data-uid="164c02935b"] .formkit-input::placeholder{color:#8A8A8A !important;}.formkit-form[data-uid="164c02935b"] .formkit-fields .formkit-submit{margin-top:15px;width:100%;background-color:#8B1A1A !important;color:#F5F0EA !important;font-family:'Poppins',sans-serif !important;font-size:0.85rem !important;font-weight:700 !important;letter-spacing:0.12em !important;text-transform:uppercase !important;padding:1rem 2.4rem !important;border:none !important;border-radius:0 !important;cursor:pointer !important;transition:opacity 0.3s,transform 0.2s !important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%) !important;}.formkit-form[data-uid="164c02935b"] .formkit-fields .formkit-submit:hover{opacity:0.85 !important;}.formkit-form[data-uid="164c02935b"] .formkit-disclaimer{margin:0 0 15px 0;color:#8A8A8A !important;font-family:'Poppins',sans-serif !important;}.formkit-form[data-uid="164c02935b"] .formkit-disclaimer > p{margin:0;}.formkit-form[data-uid="164c02935b"] .formkit-powered-by-convertkit-container{margin-bottom:0;margin-top:20px;}</style></form>
     </div>
   </section>
 
@@ -665,7 +601,7 @@
       </div>
 
       <div class="form-field">
-        <label for="message">Tell me more</label>
+        <label for="message">Tell us more</label>
         <textarea id="message" name="Message" required></textarea>
       </div>
 
