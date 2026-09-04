@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — 3rd Space Consulting</title>
+  <meta name="description" content="How 3rd Space Consulting collects, uses, and protects your information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050505;
+      --hazel: #C8922A;
+      --dark-red: #8B1A1A;
+      --off-white: #F5F0EA;
+      --gray: #8A8A8A;
+      --font: 'Poppins', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--off-white);
+      font-family: var(--font);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.95) 0%, transparent 100%);
+    }
+
+    .nav-brand {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--off-white); }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      margin-bottom: 1rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+    }
+  </style>
+  <style>
+    .page-header {
+      position: relative;
+      z-index: 1;
+      padding: 9rem 2rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--off-white);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .legal-updated {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.35rem 0.9rem;
+    }
+    .draft-note {
+      background: rgba(200,146,42,0.06);
+      border-left: 2px solid var(--hazel);
+      padding: 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-style: italic;
+      margin: 2rem auto 0;
+      max-width: 760px;
+    }
+    .legal-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 3rem auto 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      background: rgba(255,255,255,0.04);
+    }
+    .legal-block {
+      background: var(--bg);
+      padding: 2rem 2rem 2.2rem;
+    }
+    .legal-block h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--hazel);
+      margin-bottom: 1rem;
+    }
+    .legal-block p, .legal-block li {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    .legal-block p + p, .legal-block ul { margin-top: 0.9rem; }
+    .legal-block p strong { color: var(--off-white); font-weight: 600; }
+    .legal-block ul { margin-left: 1.4rem; }
+    .legal-block li + li { margin-top: 0.5rem; }
+    .legal-block a { color: var(--hazel); }
+    .legal-intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="/" aria-label="Home" style="display: inline-flex; align-items: center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="index.html#connect-form">Contact</a></li>
+    </ul>
+    <a href="/" class="nav-brand">3rd Space Consulting</a>
+  </nav>
+
+  <div class="page-header">
+    <p class="section-label reveal">Legal</p>
+    <h1 class="reveal">Privacy Policy</h1>
+    <span class="legal-updated reveal">Last updated: September 2026</span>
+  </div>
+
+  <div class="draft-note reveal">This is standard boilerplate privacy policy language as a starting point — worth a real legal review before you'd want to treat it as fully final, but it's functional to publish now.</div>
+
+  <p class="legal-intro reveal" style="margin-top: 2rem;">3rd Space Consulting LLC ("we," "us," "our") respects your privacy. This page explains what information we collect, how we use it, and your choices.</p>
+
+  <div class="legal-wrap">
+    <div class="legal-block reveal">
+      <h2>Information We Collect</h2>
+      <p>We collect information you voluntarily provide through:</p>
+      <ul>
+        <li><strong>Contact Form:</strong> first name, last name, email address, your area of interest, and any message you submit.</li>
+        <li><strong>Newsletter Signup:</strong> your email address, and optionally your name.</li>
+      </ul>
+      <p>We do not collect payment information through this website, and we do not use tracking cookies or analytics that identify you personally.</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>To respond to inquiries submitted through the Contact form.</li>
+        <li>To send the 3rd Space Newsletter to subscribers who have opted in.</li>
+        <li>To improve our services based on the type of inquiries we receive.</li>
+      </ul>
+      <p>We do not sell, rent, or trade your personal information to third parties.</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h2>Third-Party Services</h2>
+      <p>We use the following third-party services to operate this website. Each has its own privacy practices:</p>
+      <ul>
+        <li><strong>Formspree</strong> — processes Contact form submissions and delivers them to us by email.</li>
+        <li><strong>Kit (ConvertKit)</strong> — manages our newsletter subscriber list and sends newsletter emails.</li>
+        <li><strong>Vercel</strong> — hosts this website.</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h2>Your Choices</h2>
+      <p>You can unsubscribe from the newsletter at any time using the link included in every email. To request that we delete information you've submitted through the Contact form, email us directly using the address below.</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h2>Children's Privacy</h2>
+      <p>This website and our services are not directed at children under 13, and we do not knowingly collect information from children under 13.</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h2>Changes to This Policy</h2>
+      <p>We may update this policy from time to time. Changes will be posted on this page with an updated date.</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h2>Contact Us</h2>
+      <p>Questions about this policy or your information? Email <a href="mailto:robertsimmons@3rdspaceconsulting.co">robertsimmons@3rdspaceconsulting.co</a>.</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 3rd Space Consulting LLC · Bringing People Back Together
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

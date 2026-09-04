@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions — 3rd Space Consulting</title>
+  <meta name="description" content="Coaching, community support, and business audits from 3rd Space Consulting — grounded in lived experience and research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050505;
+      --hazel: #C8922A;
+      --dark-red: #8B1A1A;
+      --off-white: #F5F0EA;
+      --gray: #8A8A8A;
+      --font: 'Poppins', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--off-white);
+      font-family: var(--font);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.95) 0%, transparent 100%);
+    }
+
+    .nav-brand {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--off-white); }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      margin-bottom: 1rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+    }
+  </style>
+  <style>
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      padding: 9rem 2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      color: var(--off-white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      color: var(--gray);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .services-grid {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      background: rgba(255,255,255,0.04);
+    }
+    .service-card {
+      background: var(--bg);
+      padding: 2.5rem 2rem;
+      border-left: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .service-card:hover { border-color: var(--hazel); }
+    .service-audience {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark-red);
+      margin-bottom: 0.75rem;
+    }
+    .service-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 0.9rem;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-bottom: 1.2rem;
+    }
+    .service-cta {
+      display: inline-block;
+      color: var(--hazel);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .service-cta:hover { text-decoration: underline; }
+    .draft-note {
+      background: rgba(200,146,42,0.06);
+      border-left: 2px solid var(--hazel);
+      padding: 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-style: italic;
+      margin: 0 auto 3rem;
+      max-width: 760px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="/" aria-label="Home" style="display: inline-flex; align-items: center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="index.html#connect-form">Contact</a></li>
+    </ul>
+    <a href="/" class="nav-brand">3rd Space Consulting</a>
+  </nav>
+
+  <div class="page-hero">
+    <p class="section-label reveal" style="text-align:center;">Solutions</p>
+    <h1 class="reveal">How I can help</h1>
+    <p class="reveal">Whether you're looking for your own Third Space or trying to build genuine community for your business, everything here is grounded in the same lived experience and research-backed framework.</p>
+  </div>
+
+  <div class="draft-note reveal">This is a first-pass draft — service descriptions and framing for you to review, tighten, or rewrite. Pricing intentionally left off per our earlier conversation; nothing here is final.</div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-audience">For Individuals</div>
+      <div class="service-title">Coaching Calls</div>
+      <p>A personalized diagnostic conversation. We talk through what's actually missing in your social life right now, and I give you a specific, tailored recommendation — backed by the same framework I used to rebuild my own life, and real anecdotes from having lived it.</p>
+      <a href="index.html#connect-form" class="service-cta">Book a Coaching Call →</a>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-audience">For Individuals</div>
+      <div class="service-title">Ongoing Community Support</div>
+      <p>For when one call isn't enough. Continued support as you actually build or join a community — troubleshooting what's not working, adjusting the plan as your life changes, and staying accountable to actually showing up.</p>
+      <a href="index.html#connect-form" class="service-cta">Get Ongoing Support →</a>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-audience">For Businesses</div>
+      <div class="service-title">3rd Space Audit</div>
+      <p>A diagnostic deep-dive into your venue or organization. Using a framework built on Ray Oldenburg's Third Place theory and real community psychology research, I identify exactly where your space is succeeding at building genuine community — and where it's quietly falling short.</p>
+      <a href="index.html#connect-form" class="service-cta">Request an Audit →</a>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-audience">For Businesses</div>
+      <div class="service-title">Ongoing Business Support</div>
+      <p>The Audit tells you what's missing. This is where we actually fix it — continued, hands-on help implementing real changes so your space becomes somewhere people don't just visit, but genuinely belong.</p>
+      <a href="index.html#connect-form" class="service-cta">Get Ongoing Support →</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 3rd Space Consulting LLC · Bringing People Back Together
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
