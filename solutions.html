@@ -85,6 +85,7 @@
     .nav-links {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 2rem;
       list-style: none;
     }
@@ -123,6 +124,8 @@
 
     @media (max-width: 768px) {
       nav { padding: 1.25rem 1.5rem; }
+      .nav-links { gap: 0.9rem; row-gap: 0.5rem; justify-content: center; }
+      .nav-links a { font-size: 0.68rem; }
     }
   </style>
   <style>
@@ -286,7 +289,7 @@
       <li><a href="/">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="solutions.html">Solutions</a></li>
-      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
       <li><a href="index.html#connect-form">Contact</a></li>
     </ul>
   </nav>
@@ -352,7 +355,7 @@
       <li><a href="/">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="solutions.html">Solutions</a></li>
-      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
       <li><a href="index.html#connect-form">Contact</a></li>
     </ul>
     <p class="footer-copy">© 2026 3rd Space Consulting LLC · Bringing People Back Together</p>
