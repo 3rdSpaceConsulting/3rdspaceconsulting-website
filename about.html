@@ -219,6 +219,38 @@
       color: var(--off-white);
       line-height: 1.5;
     }
+    .story-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .story-cta .story-cta-lead {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--dark-red);
+      color: var(--off-white);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.1rem 2.8rem;
+      transition: opacity 0.3s, transform 0.2s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .story-cta .story-cta-alt {
+      margin-top: 1.25rem;
+      margin-bottom: 0;
+      font-size: 0.85rem;
+    }
+    .story-cta .story-cta-alt a { color: var(--hazel); text-decoration: none; }
+    .story-cta .story-cta-alt a:hover { text-decoration: underline; }
     .draft-note {
       background: rgba(200,146,42,0.06);
       border-left: 2px solid var(--hazel);
@@ -291,6 +323,12 @@
       <p>Then I realized. I could be the one that talks and posts about it.</p>
       <p>Since starting my business, navigating through a lot of trial and error, I was able to go from having a zero to almost negative social life, to being an active participant in over 10 3rd Spaces, both in person and virtually. Now I need to plan deliberate time away from my friends and hobbies to recharge and meet my needs.</p>
       <p><strong>My goal, now, is to take what I observe across my current 3rd Spaces, leverage Ray Oldenburg's research, as well as AI, to help individuals find their 3rd Space based on their goals and needs, help create and/or build communities, and work with businesses to leverage innovative solutions.</strong></p>
+    </div>
+
+    <div class="story-cta reveal">
+      <p class="story-cta-lead">Let's work together</p>
+      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="btn-primary">Book a Free Intro Call →</a>
+      <p class="story-cta-alt"><a href="solutions.html">See services and pricing</a></p>
     </div>
   </div>
 
