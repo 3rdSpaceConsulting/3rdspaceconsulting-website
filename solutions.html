@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Solutions — 3rd Space Consulting</title>
-  <meta name="description" content="A free intro call, 1:1 coaching calls, and retainer services for individuals and businesses from 3rd Space Consulting — grounded in lived experience and research." />
+  <meta name="description" content="Find your 3rd Space, make it stick, or build your own community. For businesses: a 3rd Space Audit and an ongoing retainer. Prices up front. Based in Austin, TX." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
@@ -272,6 +272,22 @@
       color: var(--bg);
       opacity: 0.75;
     }
+
+    .cta-btn { display:inline-block; background:var(--hazel); color:var(--bg); font-size:0.88rem; font-weight:700; letter-spacing:0.04em; text-decoration:none; padding:0.95rem 2rem; border-radius:2px; transition:opacity 0.3s; }
+    .cta-btn:hover { opacity:0.85; }
+    .more-link { display:inline-block; margin-left:1.25rem; font-size:0.82rem; color:var(--hazel); text-decoration:none; }
+    .more-link:hover { text-decoration:underline; }
+    .track-head { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:3rem 2rem 0.5rem; }
+    .track-head h2 { font-size:clamp(1.5rem,4vw,2rem); font-weight:900; color:var(--off-white); margin-bottom:0.5rem; }
+    .track-head p { color:var(--gray); font-weight:300; line-height:1.7; font-size:0.95rem; max-width:620px; }
+    .track-grid { padding-top:1.25rem !important; padding-bottom:1rem !important; }
+    .step { font-size:0.68rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--dark-red); margin-bottom:0.6rem; }
+    .situation { font-size:0.95rem; font-weight:600; color:var(--hazel); margin-bottom:0.5rem; }
+    .service-card p.promise { color:var(--off-white); font-weight:400; }
+    .service-card p.fine { font-size:0.82rem; }
+    .founding-note { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:0 2rem 1rem; color:var(--gray); font-size:0.82rem; font-weight:300; line-height:1.7; font-style:italic; }
+    .founding-note a, .page-foot a { color:var(--hazel); }
+    .page-foot { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.5rem 2rem 5rem; color:var(--gray); font-size:0.82rem; font-weight:300; line-height:1.7; }
   </style>
 </head>
 <body>
@@ -309,46 +325,85 @@
   </nav>
 
   <div class="page-hero">
-    <p class="section-label reveal" style="text-align:center; color: var(--dark-red);">Solutions</p>
-    <h1 class="reveal">How I can help</h1>
-    <p class="reveal">Whether you're looking for your own Third Space or trying to build genuine community for your business, everything here is grounded in the same lived experience and research-backed framework.</p>
+    <p class="section-label reveal" style="text-align:center;">Solutions</p>
+    <h1 class="reveal">Which sounds like you?</h1>
+    <p class="reveal">Pick the situation closest to yours. Every path starts with a free call, and every price is shown up front. Based in Austin, TX. Coaching by call, anywhere.</p>
   </div>
 
-  <div class="services-grid">
+  <div class="track-head reveal">
+    <h2>For individuals</h2>
+    <p>Start where you are. Move up only if you want more help.</p>
+  </div>
+  <div class="services-grid track-grid">
     <div class="service-card reveal">
-      <div class="service-audience">Start Here</div>
+      <div class="step">Start here</div>
+      <div class="situation">"I feel lonely or disconnected, and I'm not sure why."</div>
       <div class="service-title">Free Intro Call</div>
       <div class="service-price">Free <span>· 30 minutes · one per person</span></div>
-      <p>A no-pressure conversation about where you are with community and your social life, and whether I can help. I'm a coach, not a therapist, so this call isn't medical or mental health advice.</p>
-      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="service-cta">Book a Free Intro Call →</a>
+      <p>A no-pressure conversation about where you are with community and your social life, and which path below fits you. I'm a coach, not a therapist, so this call isn't medical or mental health advice.</p>
+      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="cta-btn">Book a Free Intro Call</a>
     </div>
 
     <div class="service-card reveal">
-      <div class="service-audience">For Individuals</div>
-      <div class="service-title">Coaching Call</div>
-      <div class="service-price">$150 <span>· 30 minutes</span></div>
-      <p>A focused 1:1 call when you want my help with a specific question. We talk through what's actually missing in your social life right now, and I give you a specific, tailored recommendation — backed by the same framework I used to rebuild my own life, and real anecdotes from having lived it.</p>
-      <a href="https://calendly.com/3rdspaceconsulting/coaching-call" target="_blank" rel="noopener" class="service-cta">Book a Coaching Call →</a>
+      <div class="step">Step 1</div>
+      <div class="situation">"I want community, but I don't know where to start."</div>
+      <div class="service-title">Find Your 3rd Space</div>
+      <div class="service-price">$100 <span>· founding price, first 3 bookings · then $150 · 30 minutes</span></div>
+      <p class="promise">In one call, you leave with one clear 3rd Space to try this week (a hobby, a group, or a place) and a plan for your first visit.</p>
+      <a href="https://calendly.com/3rdspaceconsulting/coaching-call" target="_blank" rel="noopener" class="cta-btn">Book Your Call</a><a href="find-your-3rd-space.html" class="more-link">See details →</a>
     </div>
 
     <div class="service-card reveal">
-      <div class="service-audience">For Individuals and Businesses</div>
-      <div class="service-title">Retainer Services</div>
-      <div class="service-price">Individuals: $350/month founding rate <span>· regularly $500/month</span></div>
-      <div class="service-price">Businesses: $1,000/month founding rate <span>· regularly $1,500/month</span></div>
-      <p>Ongoing support to build or grow a community that keeps people coming back. Each month includes one 60-minute call, plus messaging between calls for questions as they come up. For individuals, that means building or joining a community and staying accountable to actually showing up. For businesses, it means hands-on help making your space somewhere people don't just visit, but genuinely belong.</p>
-      <p class="service-note">Founding rates are limited to my first 3 individual clients and my first 3 business clients.</p>
-      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="service-cta">Start with a Free Intro Call →</a>
+      <div class="step">Step 2</div>
+      <div class="situation">"I tried a group or hobby, and it didn't fit or didn't last."</div>
+      <div class="service-title">Make It Stick</div>
+      <div class="service-price">$250/month <span>· founding rate, first 3 clients · then $350/month</span></div>
+      <p class="promise">In 90 days, become a regular at a 3rd Space that fits you: you show up every week, people know your name, and you have a plan to keep going.</p>
+      <p>Each month: one 60-minute call, plus messaging between calls to keep you on track. 3-month minimum, then month to month.</p>
+      <p class="fine">I can't promise you'll click with the people you meet. I can promise you'll know exactly how to show up.</p>
+      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="cta-btn">Start with a Free Intro Call</a>
     </div>
 
     <div class="service-card reveal">
-      <div class="service-audience">By Request</div>
-      <div class="service-title">3rd Space Audit</div>
-      <div class="service-price">Custom quote <span>· travel and attendance costs covered by the host</span></div>
-      <p>I join your space or event as a participant, then give you a candid written assessment of what's working and what isn't, plus a debrief call. Grounded in Ray Oldenburg's Third Place theory and my own experience across more than 10 active 3rd Spaces.</p>
-      <a href="index.html#connect-form" class="service-cta">Request an Audit →</a>
+      <div class="step">Step 3</div>
+      <div class="situation">"I want to start my own group or community."</div>
+      <div class="service-title">Build Your Community</div>
+      <div class="service-price">$350/month <span>· founding rate, first 3 clients · then $500/month</span></div>
+      <p class="promise">Start a recurring gathering and grow a core group of regulars, until it can keep going without you carrying it.</p>
+      <p>Building a community typically takes 6 to 12 months. We start with a 3-month commitment, then continue month to month for as long as it helps. Each month: one 60-minute call, plus messaging between calls.</p>
+      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="cta-btn">Start with a Free Intro Call</a>
     </div>
   </div>
+
+  <div class="track-head reveal">
+    <h2>For businesses</h2>
+    <p>Find out what's working in your space first, then decide if you want ongoing help. Not sure? <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" style="color:var(--hazel);">Start with a free intro call.</a></p>
+  </div>
+  <div class="services-grid track-grid">
+    <div class="service-card reveal">
+      <div class="step">Step 1</div>
+      <div class="situation">"I have a space or event, and I want to know why people don't keep coming back."</div>
+      <div class="service-title">3rd Space Audit</div>
+      <div class="service-price">$750 <span>· founding price, first 3 audits · then $1,500 · travel and attendance costs covered by the host</span></div>
+      <p class="promise">I visit as a customer, then give you a candid written report: what's working, what isn't, and your top 3 priorities, plus a debrief call.</p>
+      <p>Up to two visits. Grounded in Ray Oldenburg's Third Place theory and my experience across more than 10 active 3rd Spaces. If you start a Business Retainer within 30 days, the audit fee is credited toward your first month.</p>
+      <a href="index.html#connect-form" class="cta-btn">Request an Audit</a>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="step">Step 2</div>
+      <div class="situation">"I want people to come in, and I want them to stay."</div>
+      <div class="service-title">Business Retainer</div>
+      <div class="service-price">$1,000/month <span>· founding rate, first 3 clients · then $1,500/month</span></div>
+      <p class="promise">Bring people into your space and give them a reason to stay. We build a plan around your goals, then work it together.</p>
+      <p>Each month: one 60-minute call, plus messaging between calls. 3-month minimum, then month to month.</p>
+      <a href="https://calendly.com/3rdspaceconsulting/intro-call" target="_blank" rel="noopener" class="cta-btn">Start with a Free Intro Call</a>
+    </div>
+  </div>
+
+  <p class="founding-note reveal">Founding rates are for the first 3 clients of each offer. A founding monthly rate holds as long as you stay subscribed; if you cancel and return, the regular rate applies. Founding clients agree to let me share their results, and you approve the wording first.</p>
+
+  <p class="page-foot reveal">Questions about cancellations or refunds? See the <a href="refund-policy.html">refund policy</a>.</p>
 
   <footer class="site-footer">
     <div class="footer-social">
